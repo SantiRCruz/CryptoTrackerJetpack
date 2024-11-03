@@ -27,7 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.plcoding.cryptotracker.crypto.domain.Coin
 import com.plcoding.cryptotracker.crypto.presentation.models.CoinUi
-import com.plcoding.cryptotracker.crypto.presentation.models.toCoinUI
+import com.plcoding.cryptotracker.crypto.presentation.models.toCoinUi
 import com.plcoding.cryptotracker.ui.theme.CryptoTrackerTheme
 
 @Composable
@@ -36,7 +36,7 @@ fun CoinListItem(
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val contentColor = if (isSystemInDarkTheme()) {
+    val contentColor = if(isSystemInDarkTheme()) {
         Color.White
     } else {
         Color.Black
@@ -55,7 +55,7 @@ fun CoinListItem(
             modifier = Modifier.size(85.dp)
         )
         Column(
-            modifier = modifier.weight(1f)
+            modifier = Modifier.weight(1f)
         ) {
             Text(
                 text = coinUi.symbol,
@@ -71,7 +71,7 @@ fun CoinListItem(
             )
         }
         Column(
-            horizontalAlignment = Alignment.End,
+            horizontalAlignment = Alignment.End
         ) {
             Text(
                 text = "$ ${coinUi.priceUsd.formatted}",
@@ -80,7 +80,9 @@ fun CoinListItem(
                 color = contentColor
             )
             Spacer(modifier = Modifier.height(8.dp))
-            PriceChange(change = coinUi.changePercent24Hr)
+            PriceChange(
+                change = coinUi.changePercent24Hr
+            )
         }
     }
 }
@@ -92,7 +94,9 @@ private fun CoinListItemPreview() {
         CoinListItem(
             coinUi = previewCoin,
             onClick = { /*TODO*/ },
-            modifier = Modifier.background(MaterialTheme.colorScheme.primaryContainer)
+            modifier = Modifier.background(
+                MaterialTheme.colorScheme.background
+            )
         )
     }
 }
@@ -102,7 +106,7 @@ internal val previewCoin = Coin(
     rank = 1,
     name = "Bitcoin",
     symbol = "BTC",
-    marketCapUsd = 1231273958896.75,
+    marketCapUsd = 1241273958896.75,
     priceUsd = 62828.15,
     changePercent24Hr = -0.1
-).toCoinUI()
+).toCoinUi()

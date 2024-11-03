@@ -44,8 +44,8 @@ fun PriceChange(
     }
 
     Row(
-        modifier = Modifier
-            .clip(shape = RoundedCornerShape(100f))
+        modifier = modifier
+            .clip(RoundedCornerShape(100f))
             .background(backgroundColor)
             .padding(horizontal = 4.dp),
         verticalAlignment = Alignment.CenterVertically

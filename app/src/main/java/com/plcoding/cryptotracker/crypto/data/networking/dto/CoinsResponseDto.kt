@@ -3,6 +3,6 @@ package com.plcoding.cryptotracker.crypto.data.networking.dto
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class CoinResponseDto(
+data class CoinsResponseDto(
     val data: List<CoinDto>
 )
