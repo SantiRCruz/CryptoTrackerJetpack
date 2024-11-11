@@ -5,6 +5,7 @@ import androidx.annotation.DrawableRes
 import com.plcoding.cryptotracker.crypto.domain.Coin
 import com.plcoding.cryptotracker.core.presentation.util.getDrawableIdForCoin
 import java.util.Locale
+import kotlin.math.absoluteValue
 
 data class CoinUi(
     val id: String,
@@ -37,8 +38,13 @@ fun Coin.toCoinUi(): CoinUi {
 
 fun Double.toDisplayableNumber(): DisplayableNumber {
     val formatter = NumberFormat.getNumberInstance(Locale.getDefault()).apply {
-        minimumFractionDigits = 2
-        maximumFractionDigits = 2
+        if (this@toDisplayableNumber.absoluteValue < 0.01) {
+            minimumFractionDigits = 4  // Use 4 decimal places for values close to zero
+            maximumFractionDigits = 4
+        } else {
+            minimumFractionDigits = 2
+            maximumFractionDigits = 2
+        }
     }
     return DisplayableNumber(
         value = this,
